@@ -27,36 +27,65 @@ namespace CollectionSystemKeyGen
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
+           
             DateTime dt = dateTimePicker1.Value;
 
             double sec = DateTimeToUnixTimestamp(dateTimePicker1.Value);
 
             int[] timeArray = new int[10];
+
             String temp = (sec).ToString();
-            timeArray[0] = temp[2];
-            timeArray[1] = temp[5];
-            timeArray[2] = temp[8];
-            timeArray[3] = temp[4];
-            timeArray[4] = temp[6];
-            timeArray[5] = temp[0];
-            timeArray[6] = temp[3];
-            timeArray[7] = temp[7];
-            timeArray[8] = temp[1];
-            timeArray[9] = temp[8];
-
             StringBuilder sb = new StringBuilder();
-            sb.Append((char)(30 + (int)timeArray[0]));
-            sb.Append((char)(50 + (int)timeArray[1]));
-            sb.Append((char)(60 + (int)timeArray[2]));
-            sb.Append((char)(40 + (int)timeArray[3]));
 
+            sb.Append(temp[2]).Append(temp[5]).Append(temp[8]).Append(temp[4]).Append(temp[6]).Append(temp[0]).Append(temp[3]).Append(temp[7]).Append(temp[1]).Append(temp[8]);
+       
+            textBox2.Text = EncodeTimeDate(sb.ToString());
+        }
 
+        private static String EncodeTimeDate(String dateString)
+        {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < dateString.Length; i++)
+            {
+                sb.Append(EncodeChar(dateString[i]));
+            }
+
+            return sb.ToString();
         }
 
         private static double DateTimeToUnixTimestamp(DateTime dateTime)
         {
             return (dateTime - new DateTime(1970, 1, 1).ToLocalTime()).TotalSeconds;
+        }
+
+        private static String EncodeChar(char c)
+        {
+            switch (c)
+            {
+                case '0':
+                    return "X";
+                case '1':
+                    return "A";
+                case '2':
+                    return "Z";
+                case '3':
+                    return "F";
+                case '4':
+                    return "D";
+                case '5':
+                    return "G";
+                case '6':
+                    return "H";
+                case '7':
+                    return "T";
+                case '8':
+                    return "R";
+                case '9':
+                    return "L";
+                default:
+                    return String.Empty;
+       
+            }
         }
 
     }
