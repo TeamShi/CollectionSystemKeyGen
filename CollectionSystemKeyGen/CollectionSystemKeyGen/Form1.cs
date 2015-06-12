@@ -37,7 +37,7 @@ namespace CollectionSystemKeyGen
             String temp = (sec).ToString();
             StringBuilder sb = new StringBuilder();
 
-            sb.Append(temp[2]).Append(temp[5]).Append(temp[8]).Append(temp[4]).Append(temp[6]).Append(temp[0]).Append(temp[3]).Append(temp[7]).Append(temp[1]).Append(temp[8]);
+            sb.Append(temp[2]).Append(temp[5]).Append(temp[8]).Append(temp[4]).Append(temp[6]).Append(temp[0]).Append(temp[3]).Append(temp[7]).Append(temp[1]).Append(temp[9]);
        
             textBox2.Text = EncodeTimeDate(sb.ToString());
         }
